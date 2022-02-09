@@ -11,8 +11,14 @@
     },
     "devDependencies": {
         "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.0-beta.17",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
+    },
+    "dependencies": {
+        "@vue/compiler-sfc": "^3.2.12",
+        "uikit": "^3.10.2-dev.c8aa7eda2",
+        "vue": "^3.2.12",
+        "vue-loader": "^16.5.0"
     }
 }
