@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class AlumnoRequest extends FormRequest{
+class NivelesRequest extends FormRequest{
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,9 +23,8 @@ class AlumnoRequest extends FormRequest{
      */
     public function rules(){
         return [
-            'nombre' => ['required'],
-            'primer_apellido' => ['required'],
-            'fecha_nacimiento' => ['required']
+            'nivel' => ['required'],
+            'clave' => ['required']
         ];
     }
 

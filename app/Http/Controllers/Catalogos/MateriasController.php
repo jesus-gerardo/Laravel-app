@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Materias;
+use App\Http\Requests\MateriasRequest;
 use Exception;
 
 
@@ -53,13 +54,13 @@ class MateriasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(MateriasRequest $request){
         try{
             $materia = new Materias();
             $materia->nombre = $request->nombre;
             $materia->descripcion = $request->descripcion;
             $materia->creditos = $request->creditos;
-            $materia->nivel_id = $request->nivel_id;
+            
             $materia->save();
             return response()->json([
                 'response' => true
@@ -95,7 +96,7 @@ class MateriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(MateriasRequest $request, $id){
         try{
             $materia = Materias::find($id);
             $materia->nombre = $request->nombre;

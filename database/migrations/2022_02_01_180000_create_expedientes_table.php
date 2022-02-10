@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExpedientesAlumnosTable extends Migration
+class CreateExpedientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,19 @@ class CreateExpedientesAlumnosTable extends Migration
      */
     public function up()
     {
-        Schema::create('expedientes_alumnos', function (Blueprint $table) {
+        Schema::create('expedientes', function (Blueprint $table) {
             $table->id();
+            $table->string("type")->default('alumno');
+            
             $table->string('nombre');
             $table->string('primer_apellido');
             $table->string('segundo_apellido')->nullable();
             $table->date('fecha_nacimiento');
+
+            
+            $table->string('telefono')->nullable();
+            $table->text('observaciones')->nullable();
+
             $table->timestamps();
         });
     }
@@ -30,6 +37,6 @@ class CreateExpedientesAlumnosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expedientes_alumnos');
+        Schema::dropIfExists('expedientes');
     }
 }

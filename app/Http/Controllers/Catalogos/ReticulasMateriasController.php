@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Catalogos;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use App\Models\ReticulasMaterias;
 use Exception;
 
-class ReticulasMateriasController extends Controller
-{
+class ReticulasMateriasController extends Controller{
     /**
      * Display a listing of the resource.
      *

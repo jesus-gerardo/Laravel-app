@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExpedienteAcademicoAlumnosTable extends Migration
+class CreateExpedienteHistorialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateExpedienteAcademicoAlumnosTable extends Migration
      */
     public function up()
     {
-        Schema::create('expediente_academico_alumnos', function (Blueprint $table) {
+        Schema::create('expediente_historials', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('expediente_id');
+            $table->foreign('expediente_id')->references('id')->on('expedientes');
+            
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateExpedienteAcademicoAlumnosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expediente_academico_alumnos');
+        Schema::dropIfExists('expediente_historials');
     }
 }

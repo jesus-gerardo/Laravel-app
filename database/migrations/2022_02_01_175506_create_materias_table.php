@@ -15,14 +15,10 @@ class CreateMateriasTable extends Migration
     {
         Schema::create('materias', function (Blueprint $table) {
             $table->id();
-
             $table->string('nombre');
             $table->text('descripcion');
             $table->integer('creditos');
             
-            $table->unsignedBigInteger('nivel_id');
-            $table->foreign('nivel_id')->references('id')->on('niveles');
-
             $table->timestamps();
         });
     }

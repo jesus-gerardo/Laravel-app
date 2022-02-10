@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Catalogos;
 
 use App\Http\Controllers\Controller;
 use App\Models\Salones;
-use Exception;
+
+use App\Http\Requests\SalonesRequest;
 use Illuminate\Http\Request;
+use Exception;
+
 
 class SalonesController extends Controller{
     /**
@@ -52,7 +55,7 @@ class SalonesController extends Controller{
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(SalonesRequest $request){
         try{
             $salon = new Salones();
             $salon->clave = $request->clave;
@@ -96,7 +99,7 @@ class SalonesController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(SalonesRequest $request, $id){
         try{
             $salon = Salones::find($id);
             $salon->clave = $request->clave;

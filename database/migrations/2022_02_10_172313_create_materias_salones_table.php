@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSalonesAlumnosTable extends Migration
+class CreateMateriasSalonesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateSalonesAlumnosTable extends Migration
      */
     public function up()
     {
-        Schema::create('salones_alumnos', function (Blueprint $table) {
-            $table->unsignedBigInteger('salon_id');
+        Schema::create('materias_salones', function (Blueprint $table) {
+            $table->id();
+
+            $table->unsignedBigInteger('salon_id'); // salon A
             $table->foreign('salon_id')->references('id')->on('salones');
 
-            $table->unsignedBigInteger('alumno_id');
-            $table->foreign('alumno_id')->references('id')->on('expedientes');
+            $table->unsignedBigInteger('materia_id'); // español
+            $table->foreign('materia_id')->references('id')->on('materias');
 
             $table->timestamps();
         });
@@ -31,6 +33,6 @@ class CreateSalonesAlumnosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salones_alumnos');
+        Schema::dropIfExists('materias_salones');
     }
 }

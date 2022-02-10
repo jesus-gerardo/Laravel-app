@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Niveles;
+
+use App\Http\Requests\NivelesRequest;
 use Exception;
 class NivelesController extends Controller
 {
@@ -53,7 +55,7 @@ class NivelesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(NivelesRequest $request){
         try{
             $nivel = new Niveles();
             $nivel->nivel = $request->nivel;
@@ -93,7 +95,7 @@ class NivelesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(NivelesRequest $request, $id){
         try{
             $nivel = Niveles::find($id);
             $nivel->nivel = $request->nivel;

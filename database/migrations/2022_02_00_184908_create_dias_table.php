@@ -4,17 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExpedientePersonalsTable extends Migration
+class CreateDiasTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('expediente_personals', function (Blueprint $table) {
+    public function up(){
+        Schema::create('dias', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ class CreateExpedientePersonalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expediente_personals');
+        Schema::dropIfExists('dias');
     }
 }
