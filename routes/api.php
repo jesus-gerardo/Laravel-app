@@ -17,8 +17,8 @@ use App\Http\Controllers\Catalogos\NivelesController;
 use App\Http\Controllers\Catalogos\MateriasController;
 use App\Http\Controllers\Catalogos\ReticulasMateriasController;
 use App\Http\Controllers\Catalogos\SalonesController;
-use App\Http\Controllers\Alumnos\AlumnosController;
 use App\Http\Controllers\Horarios\MateriasHorariosController;
+use App\Http\Controllers\Expedientes\ExpedientesController;
 
 Route::post('auth/login', [AuthController::class, 'login']);
 
@@ -40,10 +40,10 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('/update', [MateriasHorariosController::class, 'update']);
     });
 
-    Route::prefix('alumnos')->group(function(){
-        Route::get('/', [AlumnosController::class, 'index']);
-        Route::get('/{alumnos}', [AlumnosController::class, 'show']);
-        Route::post('/', [AlumnosController::class, 'store']);
-        Route::put('/{id}', [AlumnosController::class, 'update']);
+    Route::prefix('expediente')->group(function(){
+        Route::get('/', [ExpedientesController::class, 'index']);
+        Route::get('/{expediente}', [ExpedientesController::class, 'show']);
+        Route::post('/', [ExpedientesController::class, 'store']);
+        Route::put('/{id}', [ExpedientesController::class, 'update']);
     });
 });
