@@ -6,13 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class AlumnoRequest extends FormRequest{
+class ExpedienteRequest extends FormRequest{
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    // public function authorize(){
+    // public function authorize()
+    // {
     //     return false;
     // }
 
@@ -25,7 +26,10 @@ class AlumnoRequest extends FormRequest{
         return [
             'nombre' => ['required'],
             'primer_apellido' => ['required'],
-            'fecha_nacimiento' => ['required']
+            'fecha_nacimiento' => ['required', 'date'],
+            'email' => ['required', 'email'],
+            'telefono' => [],
+            'observaciones' => []
         ];
     }
 

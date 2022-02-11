@@ -37,7 +37,7 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('/{materia_id}', [MateriasHorariosController::class, 'index']);
         Route::get('/dias/{id}', [MateriasHorariosController::class, 'salon_horario']);
         Route::post('/store', [MateriasHorariosController::class, 'store']);
-
+        Route::post('/update', [MateriasHorariosController::class, 'update']);
     });
 
     Route::prefix('alumnos')->group(function(){

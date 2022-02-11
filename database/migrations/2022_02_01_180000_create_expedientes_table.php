@@ -16,13 +16,11 @@ class CreateExpedientesTable extends Migration
         Schema::create('expedientes', function (Blueprint $table) {
             $table->id();
             $table->string("type")->default('alumno');
-            
             $table->string('nombre');
             $table->string('primer_apellido');
             $table->string('segundo_apellido')->nullable();
             $table->date('fecha_nacimiento');
-
-            
+            $table->string('email');
             $table->string('telefono')->nullable();
             $table->text('observaciones')->nullable();
 

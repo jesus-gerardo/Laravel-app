@@ -78,6 +78,7 @@ class MateriasHorariosController extends Controller{
                 foreach($dia->horas as $hora){
                     $materiasHoras = new MateriasHorarios();
                     $materiasHoras->materia_dia_id = $materiasDias->id;
+                    $materiasHoras->maestro_id = $hora->maestro_id;
                     $materiasHoras->hora_inicio = $hora->hora_inicio;
                     $materiasHoras->hora_termino = $hora->hora_termino;
                     $materiasHoras->save();
@@ -95,6 +96,14 @@ class MateriasHorariosController extends Controller{
                 'error' => $e->getMessage(),
                 'line' => $e->getLine()
             ], 200);
+        }
+    }
+
+    public function update(Request $request){
+        try{
+
+        }catch(Exception $e){
+
         }
     }
 }

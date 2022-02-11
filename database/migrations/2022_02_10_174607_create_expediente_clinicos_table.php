@@ -18,9 +18,15 @@ class CreateExpedienteClinicosTable extends Migration
 
             $table->unsignedBigInteger('expediente_id');
             $table->foreign('expediente_id')->references('id')->on('expedientes');
-
+            
+            $table->string('altura');
+            $table->string('peso');
             $table->string('tipo_sangre');
-            $table->text('observaciones');
+            
+            $table->string('padecimientos');
+            $table->string('alergias');
+
+            $table->text('observaciones')->nullable();
             $table->timestamps();
         });
     }

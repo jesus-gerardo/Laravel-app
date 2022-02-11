@@ -17,6 +17,9 @@ class CreateMateriasHorariosTable extends Migration{
 
             $table->time('hora_inicio');
             $table->time('hora_termino');
+            
+            $table->unsignedBigInteger('maestro_id');
+            $table->foreign('maestro_id')->references('id')->on('expedientes');
 
             $table->timestamps();
         });

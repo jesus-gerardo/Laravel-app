@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Alumnos;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\AlumnoRequest;
+use App\Http\Requests\ExpedienteRequest;
 use App\Models\Expediente;
 use Illuminate\Http\Request;
 
 use App\Modules\Direccion;
-// use App\Modules\ExpedienteClinico;
+use App\Modules\ExpedienteClinico;
 // use App\Modules\ExpedienteAcademicoAlumno;
 // use App\Models\ExpedienteHistorialAlumnos;
 
@@ -23,7 +23,7 @@ class AlumnosController extends Controller{
 
     function __construct(){
         $this->direccion = new Direccion();
-        // $this->expedienteClinico = new ExpedienteClinico();
+        $this->expedienteClinico = new ExpedienteClinico();
         // $this->expedienteAcademico = new ExpedienteAcademicoAlumno();
         // $this->expedienteHistorial = new ExpedienteHistorialAlumnos();
     }
@@ -62,22 +62,23 @@ class AlumnosController extends Controller{
         }
     }
 
-    function store(AlumnoRequest $request){
+    function store(ExpedienteRequest $request){
         try{
             // falta registrar usuario
             DB::beginTransaction();
-            // $direccion = $this->direccion->store($request);
-
+            
             $expediente = new Expediente();
             $expediente->nombre = $request->nombre;
             $expediente->primer_apellido = $request->primer_apellido;
             $expediente->segundo_apellido = $request->segundo_apellido;
             $expediente->fecha_nacimiento = $request->fecha_nacimiento;
-            
+            $expediente->email = $request->email;
             $expediente->telefono = $request->telefono;
             $expediente->observaciones = $request->observaciones;
-            
             $expediente->save();
+
+            $this->direccion->store($request, $expediente->id);
+            $this->expedienteClinico->store($request, $expediente->id);
 
             DB::commit();
             return response()->json([
