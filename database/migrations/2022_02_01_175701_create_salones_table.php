@@ -17,6 +17,7 @@ class CreateSalonesTable extends Migration
             $table->id();
             $table->string('clave');
             $table->integer('capacidad');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

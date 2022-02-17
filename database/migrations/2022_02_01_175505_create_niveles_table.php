@@ -17,6 +17,7 @@ class CreateNivelesTable extends Migration
             $table->id();
             $table->string('nivel');
             $table->string('clave');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

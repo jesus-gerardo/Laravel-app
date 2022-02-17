@@ -27,6 +27,7 @@ class ExpedienteRequest extends FormRequest{
             'nombre' => ['required'],
             'primer_apellido' => ['required'],
             'fecha_nacimiento' => ['required', 'date'],
+            'type' => ['required'],
             'email' => ['required', 'email'],
             'telefono' => [],
             'observaciones' => []

@@ -19,6 +19,8 @@ class CreateMateriasTable extends Migration
             $table->text('descripcion');
             $table->integer('creditos');
             
+            $table->boolean('active')->default(1);
+            
             $table->timestamps();
         });
     }

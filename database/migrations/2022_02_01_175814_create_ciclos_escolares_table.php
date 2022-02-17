@@ -21,6 +21,8 @@ class CreateCiclosEscolaresTable extends Migration
             $table->integer('year_start');
             $table->integer('year_end');
 
+            $table->boolean('active')->default(1);
+
             $table->timestamps();
         });
     }

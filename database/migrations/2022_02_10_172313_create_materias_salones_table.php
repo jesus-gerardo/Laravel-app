@@ -21,6 +21,10 @@ class CreateMateriasSalonesTable extends Migration
 
             $table->unsignedBigInteger('materia_id'); // español
             $table->foreign('materia_id')->references('id')->on('materias');
+            
+            // $table->unsignedBigInteger('ciclo_escolar_id')->nullable();
+            // $table->foreign('ciclo_escolar_id')->references('id')->on('ciclos_escolares');
+
 
             $table->timestamps();
         });

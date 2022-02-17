@@ -20,6 +20,9 @@ class CreateSalonesAlumnosTable extends Migration
             $table->unsignedBigInteger('alumno_id');
             $table->foreign('alumno_id')->references('id')->on('expedientes');
 
+            // $table->unsignedBigInteger('ciclo_escolar_id')->nullable();
+            // $table->foreign('ciclo_escolar_id')->references('id')->on('ciclos_escolares');
+
             $table->timestamps();
         });
     }

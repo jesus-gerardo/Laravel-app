@@ -18,7 +18,8 @@ class MateriasHorariosController extends Controller{
             extract(request()->only([ 'query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn', 'sort']));
             $json = json_decode($query);
             $materia = MateriasSalones::with([
-                'salon'
+                'salon',
+                'materias'
             ])->where('materia_id', $materia_id);
 
             $result['response'] = true;
@@ -47,7 +48,7 @@ class MateriasHorariosController extends Controller{
             ->get();
 
             return response()->json([
-                'response' => false,
+                'response' => true,
                 'data' => $horarios
             ], 200);
         }catch(Exception $e){
@@ -87,7 +88,7 @@ class MateriasHorariosController extends Controller{
 
             DB::commit();
             return response()->json([
-                'response' => false
+                'response' => true
             ], 200);
         }catch(Exception $e){
             DB::rollBack();

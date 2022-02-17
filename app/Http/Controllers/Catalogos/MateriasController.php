@@ -102,7 +102,6 @@ class MateriasController extends Controller
             $materia->nombre = $request->nombre;
             $materia->descripcion = $request->descripcion;
             $materia->creditos = $request->creditos;
-            $materia->nivel_id = $request->nivel_id;
             $materia->save();
             return response()->json([
                 'response' => true

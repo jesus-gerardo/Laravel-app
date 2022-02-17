@@ -13,7 +13,6 @@ use Exception;
 
 class ExpedientesController extends Controller{
     private $expediente;
-
     function __construct(){
         $this->expediente = new Expedientes();
     }

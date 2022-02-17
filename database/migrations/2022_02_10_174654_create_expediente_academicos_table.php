@@ -16,6 +16,9 @@ class CreateExpedienteAcademicosTable extends Migration
         Schema::create('expediente_academicos', function (Blueprint $table) {
             $table->id();
 
+            $table->unsignedBigInteger('ciclo_escolar_id')->nullable();
+            $table->foreign('ciclo_escolar_id')->references('id')->on('ciclos_escolares');
+
             $table->unsignedBigInteger('expediente_id');
             $table->foreign('expediente_id')->references('id')->on('expedientes');
             

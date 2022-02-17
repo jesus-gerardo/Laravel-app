@@ -19,12 +19,20 @@ use App\Http\Controllers\Catalogos\ReticulasMateriasController;
 use App\Http\Controllers\Catalogos\SalonesController;
 use App\Http\Controllers\Horarios\MateriasHorariosController;
 use App\Http\Controllers\Expedientes\ExpedientesController;
+use App\Http\Controllers\Resources\ResourcesController;
 
 Route::post('auth/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('auth/logout', [AuthController::class, 'logout']);
-    Route::get('/user', function (Request $request) { return $request->user();});
+    Route::get('/user', [AuthController::class, 'user']);
+
+    Route::prefix('resources')->group(function(){
+        Route::get('classrooms', [ResourcesController::class, 'getClassRoom']);
+        Route::get('courses', [ResourcesController::class, 'getCourses']);
+        Route::get('teachers', [ResourcesController::class, 'getTeachers']);
+
+    });
 
     Route::prefix('catalogo')->group(function(){
         Route::resource('nivel', NivelesController::class);
@@ -42,7 +50,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::prefix('expediente')->group(function(){
         Route::get('/', [ExpedientesController::class, 'index']);
-        Route::get('/{expediente}', [ExpedientesController::class, 'show']);
+        Route::get('/search/{expediente}', [ExpedientesController::class, 'show']);
         Route::post('/', [ExpedientesController::class, 'store']);
         Route::put('/{id}', [ExpedientesController::class, 'update']);
     });

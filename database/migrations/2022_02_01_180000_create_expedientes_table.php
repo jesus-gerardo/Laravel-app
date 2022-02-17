@@ -15,6 +15,7 @@ class CreateExpedientesTable extends Migration
     {
         Schema::create('expedientes', function (Blueprint $table) {
             $table->id();
+            $table->string('image')->nullable();
             $table->string("type")->default('alumno');
             $table->string('nombre');
             $table->string('primer_apellido');
@@ -23,6 +24,9 @@ class CreateExpedientesTable extends Migration
             $table->string('email');
             $table->string('telefono')->nullable();
             $table->text('observaciones')->nullable();
+
+            $table->string('status')->nullable(); // dado baja, temporal, activo
+            $table->boolean('active')->default(1);
 
             $table->timestamps();
         });

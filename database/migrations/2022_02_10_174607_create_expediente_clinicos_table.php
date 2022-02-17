@@ -23,8 +23,8 @@ class CreateExpedienteClinicosTable extends Migration
             $table->string('peso');
             $table->string('tipo_sangre');
             
-            $table->string('padecimientos');
-            $table->string('alergias');
+            $table->text('padecimientos');
+            $table->text('alergias');
 
             $table->text('observaciones')->nullable();
             $table->timestamps();
