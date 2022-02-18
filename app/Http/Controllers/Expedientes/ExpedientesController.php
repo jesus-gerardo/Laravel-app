@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Modules\Expedientes;
 use App\Models\Expediente;
 
+
+
 use Exception;
 
 class ExpedientesController extends Controller{
@@ -28,6 +30,14 @@ class ExpedientesController extends Controller{
                 'data' => [],
                 'error' => $e->getMessage()
             ], 200);
+        }
+    }
+
+    function image($name){
+        try{
+            return $this->expediente->findImage(storage_path("expediente_alumnos/{$name}"));
+        }catch(Exception $e){
+            return $this->expediente->findImage(public_path("img/no-imagen.png"));
         }
     }
     

@@ -7,10 +7,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Expediente;
 
-
 use App\Modules\Direccion;
 use App\Modules\ExpedienteClinico;
 use Exception;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\File;
 
 class Expedientes{
     private $direccion;
@@ -23,6 +25,18 @@ class Expedientes{
         $this->expedienteClinico = new ExpedienteClinico();
         // $this->expedienteAcademico = new ExpedienteAcademicoAlumno();
         // $this->expedienteHistorial = new ExpedienteHistorialAlumnos();
+    }
+
+    function findImage($path){
+        if (!File::exists($path)) {
+            throw new Exception('Image not fount', 2);
+        }
+
+        $file = File::get($path);
+        $type = File::mimeType($path);    
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+        return $response;
     }
 
     function index(Request $request){
@@ -42,6 +56,13 @@ class Expedientes{
     function store(ExpedienteRequest $request){
         $expediente = new Expediente();
 
+        if($request->has('image')){
+            $picture = $request->file('image');
+            $name = $picture->hashName();
+            Storage::disk('root')->putFileAs("/expediente_alumnos", $picture, $name);
+        }
+
+        $expediente->numero_expediente = uniqid();
         $expediente->type = $request->type;
         $expediente->nombre = $request->nombre;
         $expediente->primer_apellido = $request->primer_apellido;
@@ -49,11 +70,20 @@ class Expedientes{
         $expediente->fecha_nacimiento = $request->fecha_nacimiento;
         $expediente->email = $request->email;
         $expediente->telefono = $request->telefono;
+        $expediente->curp = $request->curp;
         $expediente->observaciones = $request->observaciones;
         $expediente->save();
 
         $this->direccion->store($request, $expediente->id);
         $this->expedienteClinico->store($request, $expediente->id);
+
+        if($request->has('image')){
+            $picture = $request->file('image');
+            $name = $picture->hashName();
+            Storage::disk('root')->putFileAs("/expediente_alumnos", $picture, $name);
+            $expediente->image = $name;
+            $expediente->save();
+        }
 
         $result['response'] = true;
         $result['error'] = null;
@@ -70,4 +100,6 @@ class Expedientes{
         }
         return $result;
     }
+
+
 }
